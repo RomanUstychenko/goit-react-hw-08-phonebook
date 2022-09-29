@@ -11,6 +11,27 @@ export default class Contacts extends Component  {
     contacts: [],
     filter: ''
   }
+  componentDidMount () {
+    // console.log("didmount")
+    const contacts = JSON.parse(localStorage.getItem("contacts"));
+    if (contacts?.length) {
+      this.setState({contacts})
+    }
+  }
+
+  componentDidUpdate (prevProps, prevState) {
+    // console.log("compdid")
+    const {contacts} = this.state;
+    if (prevState.contacts !== contacts) {
+      // console.log("compdid")
+      localStorage.setItem("contacts", JSON.stringify(contacts));
+
+    }
+  }
+  componentWillUnmount() {
+    console.log("will")
+    localStorage.removeItem("contacts")
+  }
 
   findID = nanoid();
   addContacts = (data) => {
