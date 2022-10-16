@@ -1,19 +1,16 @@
-import { Component } from "react";
+import { useState } from "react";
 import Contacts from "./Contacts"
 
-export default class App extends Component  {
-  state = {
-    contactsOpen: true,
-  }
-  delContacts = () => {
-    this.setState ((prev) => {
-      return {
-        contactsOpen: !prev.contactsOpen
-      }
-    })
-  }
-  render () {
-    const {contactsOpen} = this.state
+import React from 'react'
+
+export default function App() {
+
+  const [contactsOpen, setContactsOpen] = useState(true);
+
+ const delContacts = () => {
+  setContactsOpen((prev) => !prev)
+  };
+
   return (
     <div
       style={{
@@ -23,26 +20,9 @@ export default class App extends Component  {
         color: '#010101'
       }}
     >
-      <button onClick={() => this.delContacts()}>{contactsOpen ? "видалити" : "додати"}</button>
+      <button onClick={() => delContacts()}>{contactsOpen ? "видалити" : "додати"}</button>
      {contactsOpen && <Contacts 
       />}
     </div>
   )
-}
-}
-//  App;
-// export const App = () => {
-//   return (
-//     <div
-//       style={{
-//         height: '100vh',
-//         display: 'flex',
-//         fontSize: 40,
-//         color: '#010101'
-//       }}
-//     >
-//       <Contacts 
-//       />
-//     </div>
-//   );
-// };
+};

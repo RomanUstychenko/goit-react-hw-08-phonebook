@@ -17,7 +17,9 @@ export default function Contacts() {
     localStorage.setItem("contacts", JSON.stringify(contacts));
   }, [contacts]) 
   useEffect(() => {
-    return () => {localStorage.removeItem("contacts")}
+
+    return () => {
+      localStorage.removeItem("contacts")}
   }, [])
 
   const findID = nanoid();
