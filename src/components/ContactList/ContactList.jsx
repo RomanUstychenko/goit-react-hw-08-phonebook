@@ -1,14 +1,14 @@
 import PropTypes from 'prop-types'
-import css from "./ContactList.module.css"
+import scss from "./ContactList.module.scss"
 
  export const ContactList = ({items, delContacts}) => {
     return (
             <ul>
             {items.map(({name, number, id}) => (
-            <li className={css.contactList} key={id}> 
+            <li className={scss.contactList} key={id}> 
             <b>Name:</b>  {name} <br />
-            <b className={css.tel}>Tel:</b> {number} 
-            <span className={css.delContacts} onClick={() => delContacts(id)}>Delete</span></li>
+            <b className={scss.tel}>Tel:</b> {number} 
+            <span className={scss.delContacts} onClick={() => delContacts(id)}>Delete</span></li>
     ))
     }
          </ul>)

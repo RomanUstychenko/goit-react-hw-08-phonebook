@@ -2,7 +2,7 @@
 import { useState } from "react";
 import { nanoid } from "nanoid";
 import PropTypes from 'prop-types'
-import css from "./ContactForm.module.css"
+import scss from "./ContactForm.module.scss"
 
 
 export default function ContactForm({onSubmit}) {
@@ -36,12 +36,12 @@ export default function ContactForm({onSubmit}) {
 
       return ( 
         <form 
-        className={css.form}
+        className={scss.form}
         onSubmit={handleSubmit}>
-        <div className={css.formInput}>
+        <div className={scss.formInput}>
           <label htmlFor={nameID}>Name</label>
           <input 
-          className={css.formInputName}
+          className={scss.formInputName}
           id={nameID} 
           type="text" 
           name="name" 
@@ -51,10 +51,10 @@ export default function ContactForm({onSubmit}) {
           value={state.name} 
           onChange={handleChange} />
         </div>
-        <div className={css.formInput}>
+        <div className={scss.formInput}>
           <label htmlFor={telID}>Number</label>
           <input 
-          className={css.formInputTel}
+          className={scss.formInputTel}
           id={telID} 
           type="number" 
           name="number" 
@@ -65,7 +65,7 @@ export default function ContactForm({onSubmit}) {
           required/>
         </div>
         <button 
-        className={css.formBtn}
+        className={scss.formBtn}
         type="submit">Add</button>
         </form>
         )

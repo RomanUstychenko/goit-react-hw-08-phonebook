@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 import  ContactForm  from "./ContactForm/ContactForm"
 import {ContactList} from "./ContactList/ContactList"
 import Filters from "./Filters/Filters"
-import css from "./Contacts.module.css"
+import scss from "./Contacts.module.scss"
 
 export default function Contacts() {
 
@@ -66,13 +66,13 @@ const  handleChange = (e) => {
       return filteredContact;
     };
   return (
-    <div  className={css.phoneBook}>
-      <div className={css.contactForm}>
-      <h2 className={css.titlePhoneBook}>PhoneBook</h2>
+    <div  className={scss.phoneBook}>
+      <div className={scss.contactForm}>
+      <h2 className={scss.titlePhoneBook}>PhoneBook</h2>
         <ContactForm 
         onSubmit={addContacts} />
       </div>
-      <div className={css.contacts}>
+      <div className={scss.contacts}>
       <h2>Contacts</h2>
         <Filters 
         findID={findID}

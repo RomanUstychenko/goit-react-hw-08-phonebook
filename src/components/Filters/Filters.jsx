@@ -1,16 +1,16 @@
-import css from "./Filter.module.css"
+import scss from "./Filter.module.scss"
 import PropTypes from 'prop-types'
 
 const Filters = ({ filter, handleChange, findID }) => 
 (
-    <div className={css.contactFilter}>
+    <div className={scss.contactFilter}>
               <label
-              className={css.contactFilterLabel}
+              className={scss.contactFilterLabel}
               htmlFor={findID}
               >Find contacts by name
               </label>
               <input 
-              className={css.contactFilterInput}
+              className={scss.contactFilterInput}
               id={findID}
               type="text" 
               name="filter" 
