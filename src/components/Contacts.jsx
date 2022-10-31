@@ -65,7 +65,6 @@ const  handleChange = (e) => {
       })
       return filteredContact;
     };
-
   return (
     <div  className={css.phoneBook}>
       <div className={css.contactForm}>
