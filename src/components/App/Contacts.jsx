@@ -1,17 +1,23 @@
 import { nanoid } from "nanoid";
 import { useState, useEffect } from "react";
-import  ContactForm  from "./ContactForm/ContactForm"
-import {ContactList} from "./ContactList/ContactList"
-import Filters from "./Filters/Filters"
+import  ContactForm  from "../ContactForm/ContactForm"
+import {ContactList} from "../ContactList/ContactList"
+import Filters from "../Filters/Filters"
 import scss from "./Contacts.module.scss"
+import { useSelector, useDispatch } from "react-redux";
+import { getContacts, getFilter } from "redux/selectors";
+import { addContacts, removeContacts, setFilter } from "redux/action"; 
+
 
 export default function Contacts() {
-
-  const [contacts, setContacts] = useState(() => {
-    const value = JSON.parse(localStorage.getItem("contacts"));
-    return value ?? [];
-  });
-  const [filter, setFilter] = useState("");
+const contacts = useSelector(getContacts)
+const filter = useSelector(getFilter)
+const dispatch = useDispatch()
+  // const [contacts, setContacts] = useState(() => {
+  //   const value = JSON.parse(localStorage.getItem("contacts"));
+  //   return value ?? [];
+  // });
+  // const [filter, setFilter] = useState("");
 
   useEffect (() => {
     localStorage.setItem("contacts", JSON.stringify(contacts));
@@ -24,23 +30,26 @@ export default function Contacts() {
 
   const findID = nanoid();
 
- const addContacts = (data) => {
+ const onAddContacts = (data) => {
     if (duplicateContacts(data))
     return alert (`${data.name} is already in contact`)
-
-    setContacts((prev) => {
-      const newName = {
-        id: nanoid(),
-        ...data
-      }
-      return  [...prev, newName]
-    })
+const action = addContacts(data);
+dispatch(action);
+    // setContacts((prev) => {
+    //   const newName = {
+    //     id: nanoid(),
+    //     ...data
+    //   }
+    //   return  [...prev, newName]
+    // })
   };
 
 const delContacts = (id) => {
-  setContacts((prev) => {
-    return prev.filter((item) => item.id !== id);
-  })
+  const action = removeContacts(id);
+dispatch(action);
+  // setContacts((prev) => {
+  //   return prev.filter((item) => item.id !== id);
+  // })
   };
 
 const duplicateContacts = ({name}) => {
@@ -50,7 +59,8 @@ const duplicateContacts = ({name}) => {
 
 const  handleChange = (e) => {
     const {value} = e.target;
-    setFilter(value)
+    dispatch(setFilter(value))
+    // setFilter(value)
   };
 
  const getFilteredContact = () => {
@@ -70,7 +80,7 @@ const  handleChange = (e) => {
       <div className={scss.contactForm}>
       <h2 className={scss.titlePhoneBook}>PhoneBook</h2>
         <ContactForm 
-        onSubmit={addContacts} />
+        onSubmit={onAddContacts} />
       </div>
       <div className={scss.contacts}>
       <h2>Contacts</h2>
