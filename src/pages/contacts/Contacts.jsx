@@ -1,8 +1,8 @@
 import { nanoid } from "nanoid";
 import { useEffect } from "react";
-import  ContactForm  from "../ContactForm/ContactForm"
-import {ContactList} from "../ContactList/ContactList"
-import Filters from "../Filters/Filters"
+import  ContactForm  from "../../components/ContactForm/ContactForm"
+import {ContactList} from "../../components/ContactList/ContactList"
+import Filters from "../filter/Filters"
 import scss from "./Contacts.module.scss"
 import { useSelector, useDispatch } from "react-redux";
 import { getContacts, getFilter } from "redux/selectors";

@@ -27,5 +27,4 @@ Filters.propTypes = {
     findID: PropTypes.string.isRequired,
     handleChange: PropTypes.func.isRequired,
   };
-
   export default Filters;
