@@ -5,8 +5,13 @@ import {ContactList} from "../../components/ContactList/ContactList"
 import Filters from "../filter/Filters"
 import scss from "./Contacts.module.scss"
 import { useSelector, useDispatch } from "react-redux";
-import { getContacts, getFilter } from "redux/selectors";
-import { addContacts, removeContacts, setFilter } from "redux/action"; 
+
+import { getContacts } from "redux/contacts/contacts-selector";
+import { getFilter } from "redux/filter/filter-selector";
+
+import { addContact, removeContact } from "redux/contacts/contacts-slice"; 
+import { setFilter } from "redux/filter/filter-slice";
+
 
 
 export default function Contacts() {
@@ -19,21 +24,21 @@ const dispatch = useDispatch()
   // });
   // const [filter, setFilter] = useState("");
 
-  useEffect (() => {
-    localStorage.setItem("contacts", JSON.stringify(contacts));
-  }, [contacts]) 
-  useEffect(() => {
+  // useEffect (() => {
+  //   localStorage.setItem("contacts", JSON.stringify(contacts));
+  // }, [contacts]) 
+  // useEffect(() => {
 
-    return () => {
-      localStorage.removeItem("contacts")}
-  }, [])
+  //   return () => {
+  //     localStorage.removeItem("contacts")}
+  // }, [])
 
   const findID = nanoid();
 
  const onAddContacts = (data) => {
     if (duplicateContacts(data))
     return alert (`${data.name} is already in contact`)
-const action = addContacts(data);
+const action = addContact(data);
 dispatch(action);
     // setContacts((prev) => {
     //   const newName = {
@@ -45,7 +50,7 @@ dispatch(action);
   };
 
 const delContacts = (id) => {
-  const action = removeContacts(id);
+  const action = removeContact(id);
 dispatch(action);
   // setContacts((prev) => {
   //   return prev.filter((item) => item.id !== id);
