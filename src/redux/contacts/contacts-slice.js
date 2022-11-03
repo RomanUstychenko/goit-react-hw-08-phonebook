@@ -19,9 +19,9 @@ const contactsSlice = createSlice({
                 }
             }
         },
-        removeContact: (store, {payload}) => {
-            store.filter(({id}) => id !== payload)
-        }
+
+        removeContact: (store, {payload}) => store.filter(({id}) => id !== payload)
+       
     }
 });
 

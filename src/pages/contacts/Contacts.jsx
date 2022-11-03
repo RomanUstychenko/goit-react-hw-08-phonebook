@@ -24,14 +24,14 @@ const dispatch = useDispatch()
   // });
   // const [filter, setFilter] = useState("");
 
-  // useEffect (() => {
-  //   localStorage.setItem("contacts", JSON.stringify(contacts));
-  // }, [contacts]) 
-  // useEffect(() => {
+  useEffect (() => {
+    localStorage.setItem("contacts", JSON.stringify(contacts));
+  }, [contacts]) 
+  useEffect(() => {
 
-  //   return () => {
-  //     localStorage.removeItem("contacts")}
-  // }, [])
+    return () => {
+      localStorage.removeItem("contacts")}
+  }, [])
 
   const findID = nanoid();
 
@@ -50,8 +50,8 @@ dispatch(action);
   };
 
 const delContacts = (id) => {
-  const action = removeContact(id);
-dispatch(action);
+    const action = removeContact(id);
+    dispatch(action);
   // setContacts((prev) => {
   //   return prev.filter((item) => item.id !== id);
   // })
