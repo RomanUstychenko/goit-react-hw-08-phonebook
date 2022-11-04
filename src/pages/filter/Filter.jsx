@@ -1,7 +1,7 @@
 import scss from "./Filter.module.scss"
 import PropTypes from 'prop-types'
 
-const Filters = ({ filter, handleChange, findID }) => 
+const Filter = ({ filter, handleChange, findID }) => 
 (
     <div className={scss.contactFilter}>
               <label
@@ -22,9 +22,9 @@ const Filters = ({ filter, handleChange, findID }) =>
           </div>
 );
 
-Filters.propTypes = {
+Filter.propTypes = {
     filter: PropTypes.string.isRequired,
     findID: PropTypes.string.isRequired,
     handleChange: PropTypes.func.isRequired,
   };
-  export default Filters;
+  export default Filter;

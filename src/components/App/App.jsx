@@ -5,11 +5,13 @@ import React from 'react'
 
 export default function App() {
 
-  const [contactsOpen, setContactsOpen] = useState(true);
+  const [contactsOpen
+    // , setContactsOpen
+  ] = useState(true);
 
- const delContacts = () => {
-  setContactsOpen((prev) => !prev)
-  };
+//  const delContacts = () => {
+//   setContactsOpen((prev) => !prev)
+//   };
 
   return (
     <div
@@ -20,7 +22,7 @@ export default function App() {
         color: '#010101'
       }}
     >
-      <button onClick={() => delContacts()}>{contactsOpen ? "видалити" : "додати"}</button>
+      {/* <button onClick={() => delContacts()}>{contactsOpen ? "видалити" : "додати"}</button> */}
      {contactsOpen && <Contacts 
       />}
     </div>

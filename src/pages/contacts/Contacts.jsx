@@ -2,13 +2,11 @@ import { nanoid } from "nanoid";
 import { useEffect } from "react";
 import  ContactForm  from "../../components/ContactForm/ContactForm"
 import {ContactList} from "../../components/ContactList/ContactList"
-import Filters from "../filter/Filters"
+import Filter from "../filter/Filter"
 import scss from "./Contacts.module.scss"
 import { useSelector, useDispatch } from "react-redux";
-
 import { getContacts } from "redux/contacts/contacts-selector";
 import { getFilter } from "redux/filter/filter-selector";
-
 import { addContact, removeContact } from "redux/contacts/contacts-slice"; 
 import { setFilter } from "redux/filter/filter-slice";
 
@@ -18,11 +16,6 @@ export default function Contacts() {
 const contacts = useSelector(getContacts)
 const filter = useSelector(getFilter)
 const dispatch = useDispatch()
-  // const [contacts, setContacts] = useState(() => {
-  //   const value = JSON.parse(localStorage.getItem("contacts"));
-  //   return value ?? [];
-  // });
-  // const [filter, setFilter] = useState("");
 
   useEffect (() => {
     localStorage.setItem("contacts", JSON.stringify(contacts));
@@ -40,21 +33,11 @@ const dispatch = useDispatch()
     return alert (`${data.name} is already in contact`)
 const action = addContact(data);
 dispatch(action);
-    // setContacts((prev) => {
-    //   const newName = {
-    //     id: nanoid(),
-    //     ...data
-    //   }
-    //   return  [...prev, newName]
-    // })
   };
 
 const delContacts = (id) => {
     const action = removeContact(id);
     dispatch(action);
-  // setContacts((prev) => {
-  //   return prev.filter((item) => item.id !== id);
-  // })
   };
 
 const duplicateContacts = ({name}) => {
@@ -65,7 +48,6 @@ const duplicateContacts = ({name}) => {
 const  handleChange = (e) => {
     const {value} = e.target;
     dispatch(setFilter(value))
-    // setFilter(value)
   };
 
  const getFilteredContact = () => {
@@ -89,7 +71,7 @@ const  handleChange = (e) => {
       </div>
       <div className={scss.contacts}>
       <h2>Contacts</h2>
-        <Filters 
+        <Filter 
         findID={findID}
         filter={filter}
         handleChange={handleChange}

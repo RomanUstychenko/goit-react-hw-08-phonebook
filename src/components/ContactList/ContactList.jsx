@@ -1,6 +1,5 @@
 import PropTypes from 'prop-types'
 import scss from "./ContactList.module.scss"
-// import { removeContact } from 'redux/contacts/contacts-slice'
 
  export const ContactList = ({items, delContacts}) => {
     return (
