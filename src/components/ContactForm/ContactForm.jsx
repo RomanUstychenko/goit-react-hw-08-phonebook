@@ -1,11 +1,15 @@
-
 import { useState } from "react";
 import { nanoid } from "nanoid";
-import PropTypes from 'prop-types'
 import scss from "./ContactForm.module.scss"
+import { useSelector, useDispatch } from 'react-redux';
+import { getContacts } from 'redux/contacts/contacts-selector';
+import { addContact } from "redux/contacts/contacts-slice"; 
 
 
-export default function ContactForm({onSubmit}) {
+export default function ContactForm () {
+  const contacts = useSelector(getContacts);
+  const dispatch = useDispatch();
+
    const [state, setState] = useState({
             name: '',
             number: '',
@@ -26,13 +30,32 @@ export default function ContactForm({onSubmit}) {
 
   const handleSubmit = (e) => {
         e.preventDefault()
+
         const {name, number} = state;
-        onSubmit({name, number})
-        setState ({
-          name: '',
-          number: '',
-        })
+        onAddContacts({name, number})
       };
+      const onAddContacts = (data) => {
+        console.log(data)
+        if (duplicateContacts(data)) {
+          alert (`${data.name} is already in contact`)
+          return
+        }
+        else {
+          const action = addContact(data);
+          console.log(action)
+          dispatch(action);
+          setState ({
+            name: '',
+            number: '',
+          })
+        }
+      };
+
+      const duplicateContacts = ({name}) => {
+        console.log(contacts)
+        const result = contacts.find((contact) => contact.name.toLocaleLowerCase() === name.toLocaleLowerCase());
+        return result;
+    };
 
       return ( 
         <form 
@@ -70,8 +93,3 @@ export default function ContactForm({onSubmit}) {
         </form>
         )
 };
-
-
-    ContactForm.propTypes = {
-      onSubmit: PropTypes.func.isRequired,
-    };

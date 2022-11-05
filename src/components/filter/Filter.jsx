@@ -1,8 +1,22 @@
 import scss from "./Filter.module.scss"
-import PropTypes from 'prop-types'
+import { useSelector, useDispatch } from 'react-redux';
+import  { getFilter }from 'redux/filter/filter-selector';
+import { nanoid } from "nanoid";
+import { setFilter } from "redux/filter/filter-slice";
 
-const Filter = ({ filter, handleChange, findID }) => 
-(
+const Filter = () => {
+
+    const filters = useSelector(getFilter);
+    const dispatch = useDispatch();
+
+    const findID = nanoid();
+
+    const  handleChange = (e) => {
+        const {value} = e.target;
+        dispatch(setFilter(value))
+      };
+
+return (
     <div className={scss.contactFilter}>
               <label
               className={scss.contactFilterLabel}
@@ -11,20 +25,14 @@ const Filter = ({ filter, handleChange, findID }) =>
               </label>
               <input 
               className={scss.contactFilterInput}
-              id={findID}
               type="text" 
               name="filter" 
-              value={filter}
+              value={filters}
               onChange={handleChange}
               title="Search"
               required
               />
           </div>
-);
+)};
 
-Filter.propTypes = {
-    filter: PropTypes.string.isRequired,
-    findID: PropTypes.string.isRequired,
-    handleChange: PropTypes.func.isRequired,
-  };
   export default Filter;

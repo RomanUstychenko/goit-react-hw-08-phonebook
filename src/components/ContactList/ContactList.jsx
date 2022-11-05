@@ -1,25 +1,36 @@
-import PropTypes from 'prop-types'
 import scss from "./ContactList.module.scss"
+import { useSelector, useDispatch } from 'react-redux';
+import { getContacts } from 'redux/contacts/contacts-selector';
+import  { getFilter }from 'redux/filter/filter-selector';
+import { removeContact } from 'redux/contacts/contacts-slice';
 
- export const ContactList = ({items, delContacts}) => {
+ export const ContactList = () => {
+    
+    const contacts = useSelector(getContacts);
+    const filter = useSelector(getFilter);
+    const dispatch = useDispatch();
+
+    const getFilteredContact = () => {
+        if (!filter) {
+          return contacts;
+        }
+            const normalizedFilter = filter.toLocaleLowerCase();
+            const filteredContact = contacts.filter(({name}) => {
+            const nornalizedName = name.toLocaleLowerCase();
+            const result = nornalizedName.includes(normalizedFilter);
+            return result;
+          })
+          return filteredContact;
+        };
+
     return (
             <ul>
-            {items.map(({name, number, id}) => (
+            {getFilteredContact().map(({name, number, id}) => (
             <li className={scss.contactList} key={id}> 
             <b>Name:</b>  {name} <br />
             <b className={scss.tel}>Tel:</b> {number} 
-            <span className={scss.delContacts} onClick={() => delContacts(id)}>Delete</span></li>
+            <span className={scss.delContacts} onClick={() => { dispatch(removeContact(id)); }}>Delete</span></li>
     ))
     }
          </ul>)
          }
-
-ContactList.propTypes = {
-    items: PropTypes.arrayOf(
-        PropTypes.shape({
-            id: PropTypes.string.isRequired,
-            name: PropTypes.string.isRequired,
-            number: PropTypes.string.isRequired,
-        })).isRequired,
-        delContacts: PropTypes.func.isRequired,
-}

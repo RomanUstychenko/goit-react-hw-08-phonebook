@@ -5,7 +5,7 @@ import filterReducer from "./filter/filter-slice";
 
 const rootReducer = combineReducers({
     contacts: contactsReducer,
-    filter: filterReducer
+    filter: filterReducer,
 });
 
 export default rootReducer;

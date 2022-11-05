@@ -1,5 +1,5 @@
 import { useState } from "react";
-import Contacts from "../../pages/contacts/Contacts"
+import Contacts from "../contacts/Contacts"
 
 import React from 'react'
 
