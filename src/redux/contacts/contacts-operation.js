@@ -23,11 +23,11 @@ export const fetchContacts = createAsyncThunk(
             }},
     );
 
-    export const removeContact = createAsyncThunk(
+    export const deleteContact = createAsyncThunk(
         "contacts/remove",
         async(id, {rejectWithValue}) => {
             try {
-                await api.removeContact(id);
+                await api.deleteContact(id);
                 return id;
             } catch(error) {
                 return rejectWithValue(error);

@@ -17,7 +17,7 @@ export const addContacts = async(data) => {
     return result;
 }
 
-export const removeContact = async(id) => {
+export const deleteContact = async(id) => {
     const {data} = await instanceContacts.delete(`/${id}`);
     return data;
 }

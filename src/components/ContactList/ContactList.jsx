@@ -2,7 +2,7 @@ import scss from "./ContactList.module.scss"
 import { useSelector, useDispatch } from 'react-redux';
 import { getContacts } from 'redux/contacts/contacts-selector';
 import  { getFilter }from 'redux/filter/filter-selector';
-import { removeContact } from "redux/contacts/contacts-operation"; 
+import { deleteContact } from "redux/contacts/contacts-operation"; 
 
  export const ContactList = () => {
     
@@ -29,7 +29,7 @@ import { removeContact } from "redux/contacts/contacts-operation";
             <li className={scss.contactList} key={id}> 
             <b>Name:</b>  {name} <br />
             <b className={scss.tel}>Tel:</b> {phone} 
-            <span className={scss.delContacts} onClick={() => { dispatch(removeContact(id)); }}>Delete</span></li>
+            <span className={scss.delContacts} onClick={() => { dispatch(deleteContact(id)); }}>Delete</span></li>
     ))
     }
          </ul>)
