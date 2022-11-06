@@ -2,17 +2,17 @@ import { useState } from "react";
 import { nanoid } from "nanoid";
 import scss from "./ContactForm.module.scss"
 import { useSelector, useDispatch } from 'react-redux';
-import { getContacts } from 'redux/contacts/contacts-selector';
-import { addContact } from "redux/contacts/contacts-slice"; 
-
+import { getFilteredContacts } from 'redux/contacts/contacts-selector';
+import { addContacts } from "redux/contacts/contacts-operation"; 
 
 export default function ContactForm () {
-  const contacts = useSelector(getContacts);
+  const contacts = useSelector(getFilteredContacts);
+  
   const dispatch = useDispatch();
 
    const [state, setState] = useState({
             name: '',
-            number: '',
+            phone: '',
    });
 
   const nameID = nanoid();
@@ -31,28 +31,25 @@ export default function ContactForm () {
   const handleSubmit = (e) => {
         e.preventDefault()
 
-        const {name, number} = state;
-        onAddContacts({name, number})
+        const {name, phone} = state;
+        onAddContacts({name, phone})
       };
       const onAddContacts = (data) => {
-        console.log(data)
         if (duplicateContacts(data)) {
           alert (`${data.name} is already in contact`)
           return
         }
         else {
-          const action = addContact(data);
-          console.log(action)
+          const action = addContacts(data);
           dispatch(action);
           setState ({
             name: '',
-            number: '',
+            phone: '',
           })
         }
       };
 
       const duplicateContacts = ({name}) => {
-        console.log(contacts)
         const result = contacts.find((contact) => contact.name.toLocaleLowerCase() === name.toLocaleLowerCase());
         return result;
     };
@@ -75,15 +72,15 @@ export default function ContactForm () {
           onChange={handleChange} />
         </div>
         <div className={scss.formInput}>
-          <label htmlFor={telID}>Number</label>
+          <label htmlFor={telID}>Phone</label>
           <input 
           className={scss.formInputTel}
           id={telID} 
           type="number" 
-          name="number" 
+          name="phone" 
           pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
           title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
-          value={state.number} 
+          value={state.phone} 
           onChange={handleChange} 
           required/>
         </div>

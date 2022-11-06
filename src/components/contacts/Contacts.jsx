@@ -1,24 +1,23 @@
-import { useEffect } from "react";
+// import { useEffect } from "react";
 import  ContactForm  from "../ContactForm/ContactForm"
 import {ContactList} from "../ContactList/ContactList"
+import { fetchContacts } from "redux/contacts/contacts-operation"
 import Filter from "../filter/Filter"
 import scss from "./Contacts.module.scss"
-import { useSelector } from "react-redux";
-import { getContacts } from "redux/contacts/contacts-selector";
-
+import { useDispatch, useSelector } from "react-redux";
+import { useEffect } from "react";
+import { getState } from 'redux/contacts/contacts-selector';
+import { getContacts } from 'redux/contacts/contacts-selector';
 
 export default function Contacts() {
-const contacts = useSelector(getContacts)
 
-  useEffect (() => {
-    localStorage.setItem("contacts", JSON.stringify(contacts));
-    console.log(contacts)
-  }, [contacts]);
+  const dispatch = useDispatch();
+  const contacts = useSelector(getContacts);
+ const {loading, error} = useSelector(getState);
 
   useEffect(() => {
-    return () => {
-      localStorage.removeItem("contacts")}
-  }, [])
+      dispatch(fetchContacts());
+      }, [dispatch]);
 
   return (
     <div  className={scss.phoneBook}>
@@ -29,7 +28,9 @@ const contacts = useSelector(getContacts)
       <div className={scss.contacts}>
       <h2>Contacts</h2>
         <Filter />
-        <ContactList />
+          {!loading && contacts.length > 0 && <ContactList />}
+          {loading && <p className={scss.contactsLoading}>...loading</p>}
+          {error && <p>oops, something went wrong</p>}
       </div>
     </div>
     )
