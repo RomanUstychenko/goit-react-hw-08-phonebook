@@ -1,8 +1,8 @@
 // import { useEffect } from "react";
-import  ContactForm  from "../ContactForm/ContactForm"
-import {ContactList} from "../ContactList/ContactList"
+import  ContactForm  from "../../ContactForm/ContactForm"
+import {ContactList} from "../../ContactList/ContactList"
 import { fetchContacts } from "redux/contacts/contacts-operation"
-import Filter from "../filter/Filter"
+import Filter from "../../filter/Filter"
 import scss from "./Contacts.module.scss"
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
