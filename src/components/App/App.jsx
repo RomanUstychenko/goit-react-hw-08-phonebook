@@ -33,6 +33,7 @@ export default function App() {
       <Suspense fallback={<Loader/>}>
         <Navbar />
       <Routes>
+      <Route path="/" element={<Contacts />}/>
      <Route path="/contacts" element={<Contacts />}/>
      <Route path="/login" element={<Login />}/>
      <Route path="/register" element={<Registration />}/>
