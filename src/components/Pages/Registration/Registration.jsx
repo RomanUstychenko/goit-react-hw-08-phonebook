@@ -1,6 +1,6 @@
 import React from 'react'
 import { nanoid } from "nanoid";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { signup } from 'redux/auth/auth-operation';
 
 
