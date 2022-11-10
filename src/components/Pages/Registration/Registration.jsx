@@ -1,9 +1,17 @@
 import React from 'react'
 import { nanoid } from "nanoid";
-
+import { useDispatch, useSelector } from "react-redux";
+import { signup } from 'redux/auth/auth-operation';
 
 
 export default function Registration() {
+
+  const dispatch = useDispatch();
+  // const isUserLogin = useSelector(isLogin);
+
+  const onRegister = (data) => {
+    dispatch(signup(data));
+  }
 
   const nameId = nanoid();
     const emailId = nanoid();
@@ -19,7 +27,8 @@ export default function Registration() {
   return (
     <div>
        <h1>Registration</h1> 
-       <form>
+       <form
+       onSubmit={onRegister}>
        <div>
             {<label 
             htmlFor={nameId}
@@ -47,8 +56,9 @@ export default function Registration() {
             // checked={checked}  onChange={handleChange}  className={fullClassName}  value={name}   pattern={pattern}
              />
         </div>
+        <button>Registration</button>
        </form>
-       <button>Registration</button>
+       
        </div>
   )
 }

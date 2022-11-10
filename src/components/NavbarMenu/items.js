@@ -5,15 +5,6 @@ const items = [
     to: "/contacts",
     text: "Contacts"
 },
-    {id: nanoid(),
-    to: "/register",
-    text: "Registration"
-},
-    {id: nanoid(),
-    to: "/login",
-    text: "Login"
-},
-
 ]
 
 
