@@ -52,7 +52,7 @@ export default function Registration() {
             htmlFor={passwordId}
             >Password </label>}
             <input 
-            id={passwordId} placeholder="Enter password" name="name" type="password" required="true"
+            id={passwordId} placeholder="Enter password" name="password" type="password" required="true"
             // checked={checked}  onChange={handleChange}  className={fullClassName}  value={name}   pattern={pattern}
              />
         </div>
