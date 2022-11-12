@@ -1,5 +1,5 @@
 import { nanoid } from "nanoid";
-import useForm from 'components/UseForm/useForm';
+import useForm from 'components/hooks/useForm';
 import PropTypes from "prop-types";
 
     const initialState = {

@@ -1,6 +1,9 @@
 import {Routes, Route } from "react-router-dom";
 import { lazy, Suspense } from "react";
 import Loader from "components/Loader/Loader";
+import { useEffect } from "react";
+import { useDispatch } from "react-redux";
+import { current } from "redux/auth/auth-operation";
 
 const Contacts = lazy(() => import("Pages/Contacts/Contacts"));
 const NotFound = lazy(() => import("Pages/PageNotFound/NotFound"));
@@ -11,7 +14,11 @@ const Registration = lazy(() => import("Pages/Registration/Registration"));
 
 export default function App() {
 
+const dispatch = useDispatch();
 
+useEffect(() => {
+  dispatch(current())
+}, [dispatch])
 
   return (
     <div

@@ -28,7 +28,6 @@ export const fetchContacts = createAsyncThunk(
                   }
                   );
                 console.log(result)
-                console.log(result.data)
                 return result;
                 
             } catch (error) {
