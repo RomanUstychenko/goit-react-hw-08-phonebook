@@ -2,20 +2,12 @@ import {Routes, Route } from "react-router-dom";
 import { lazy, Suspense } from "react";
 import Loader from "components/Loader/Loader";
 
-// import Contacts from "./Pages/Contacts/Contacts"
-// import NotFound from "components/Pages/PageNotFound/NotFound";
-// import Contacts from "components/Pages/Contacts/Contacts";
-// import Navbar from "components/Navbar/Navbar";
-// import Login from "components/Pages/Login/Login";
-// import Registration from "components/Pages/Registration/Registration";
-
-const Contacts = lazy(() => import("components/Pages/Contacts/Contacts"));
-const NotFound = lazy(() => import("components/Pages/PageNotFound/NotFound"));
+const Contacts = lazy(() => import("Pages/Contacts/Contacts"));
+const NotFound = lazy(() => import("Pages/PageNotFound/NotFound"));
 const Navbar = lazy(() => import("components/Navbar/Navbar"));
-const Login = lazy(() => import("components/Pages/Login/Login"));
-const Registration = lazy(() => import("components/Pages/Registration/Registration"));
+const Login = lazy(() => import("Pages/Login/Login"));
+const Registration = lazy(() => import("Pages/Registration/Registration"));
 
-// import React from 'react'
 
 export default function App() {
 

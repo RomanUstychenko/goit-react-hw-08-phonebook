@@ -1,8 +1,9 @@
 import { useState } from 'react';
 import { nanoid } from "nanoid";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { signup } from 'redux/auth/auth-operation';
-
+import { isLogin } from 'redux/auth/auth-selector';
+import { Navigate } from "react-router-dom";
 
 export default function Registration() {
 
@@ -15,7 +16,7 @@ export default function Registration() {
     const passwordId = nanoid();
 
   const dispatch = useDispatch();
-  // const isUserLogin = useSelector(isLogin);
+  const isUserLogin = useSelector(isLogin);
 
   const handleChange = (event) => {
     const { name, value } = event.currentTarget;
@@ -39,18 +40,12 @@ export default function Registration() {
 
 const handleSubmit = (e) => {
     e.preventDefault();
-    dispatch(signup({ name: name, email: email, password: password }));
-    setName('');
-    setEmail('');
-    setPassword('');
+    dispatch(signup({ name: name, email: email, password: password }));    
 };
 
-  // const onRegister = (data) => {
-  //   // data.preventDefault();
-  //   dispatch(signup(data));
-  // }
-
- 
+if (isUserLogin) {
+  return <Navigate to="/contacts" />
+;}
 
   return (
     <div>
@@ -64,7 +59,6 @@ const handleSubmit = (e) => {
             <input 
             id={nameId} placeholder="Enter name" name="name" type="text" required onChange={handleChange} value={name}
             pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
-            // checked={checked}    className={fullClassName}  
              />
         </div>
         <div>
@@ -74,7 +68,6 @@ const handleSubmit = (e) => {
             <input 
             id={emailId} placeholder="Enter email" name="email" type="email" required onChange={handleChange} value={email}
             pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
-            // checked={checked}    className={fullClassName}  
              />
         </div>
         <div>
@@ -83,7 +76,6 @@ const handleSubmit = (e) => {
             >Password </label>}
             <input 
             id={passwordId} placeholder="Enter password" name="password" type="password" required onChange={handleChange} value={password}
-            // checked={checked}    className={fullClassName}
              />
         </div>
         <button>Registration</button>

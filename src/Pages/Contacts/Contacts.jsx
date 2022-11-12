@@ -1,8 +1,8 @@
 // import { useEffect } from "react";
-import  ContactForm  from "../../ContactForm/ContactForm"
-import {ContactList} from "../../ContactList/ContactList"
+import  ContactForm  from "../../components/ContactForm/ContactForm"
+import {ContactList} from "../../components/ContactList/ContactList"
 import { fetchContacts } from "redux/contacts/contacts-operation"
-import Filter from "../../filter/Filter"
+import Filter from "../../components/filter/Filter"
 import scss from "./Contacts.module.scss"
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
@@ -14,10 +14,10 @@ export default function Contacts() {
   const dispatch = useDispatch();
   const contacts = useSelector(getContacts);
  const {loading, error} = useSelector(getState);
-
-  useEffect(() => {
-      dispatch(fetchContacts());
-      }, [dispatch]);
+console.log(contacts)
+      useEffect(() => {
+          dispatch(fetchContacts());
+          }, [dispatch]);
 
   return (
     <div  className={scss.phoneBook}>

@@ -10,49 +10,94 @@ export default function ContactForm () {
   
   const dispatch = useDispatch();
 
-   const [state, setState] = useState({
-            name: '',
-            phone: '',
-   });
+  const [name, setName] = useState('');
+  const [phone, setPhone] = useState('');
+
+  //  const [state, setState] = useState({
+  //           name: '',
+  //           phone: '',
+  //  });
 
   const nameID = nanoid();
   const telID = nanoid();
 
   const handleChange = (e) => {
-        const {name, value} = e.target;
-        setState((prev) => {
-          return {
-            ...prev,
-            [name]: value,
-          }
-        })
+        // const {name, value} = e.target;
+        const { name } = e.currentTarget;
+        switch (name) {
+          case 'name':
+            setName(e.currentTarget.value);
+            break;
+          case 'phone':
+            setPhone(e.currentTarget.value);
+            break;
+          default:
+            break;
+        }
+        // setState((prev) => {
+        //   return {
+        //     ...prev,
+        //     [name]: value,
+        //   }
+        // })
       };
 
   const handleSubmit = (e) => {
         e.preventDefault()
 
-        const {name, phone} = state;
-        onAddContacts({name, phone})
-      };
-      const onAddContacts = (data) => {
-        if (duplicateContacts(data)) {
-          alert (`${data.name} is already in contact`)
-          return
-        }
-        else {
-          const action = addContacts(data);
-          dispatch(action);
-          setState ({
-            name: '',
-            phone: '',
-          })
-        }
-      };
+        const duplicateContacts = contacts.find(contact => contact.name.toLocaleLowerCase() === name.toLocaleLowerCase());
+      console.log(duplicateContacts)
+        console.log(contacts)
+          if (duplicateContacts) {
+            alert (`${name} is already in contact`)
+            return
+          }
+          else {
+            dispatch(addContacts({ name, phone }));
+            setName('');
+            setPhone('');
+          }
+        
 
-      const duplicateContacts = ({name}) => {
-        const result = contacts.find((contact) => contact.name.toLocaleLowerCase() === name.toLocaleLowerCase());
-        return result;
-    };
+
+        
+        // const {name, phone} = state;
+        // onAddContacts({name, phone})
+      };
+      // const onAddContacts = (data) => {
+      //   if (duplicateContacts(data)) {
+      //     alert (`${data.name} is already in contact`)
+      //     return
+      //   }
+      //   else {
+      //     const action = addContacts(data);
+      //     dispatch(action);
+      //     setState ({
+      //       name: '',
+      //       phone: '',
+      //     })
+      //   }
+      // };
+
+    //   const duplicateContacts = ({name}) => {
+    //     const result = contacts.find((contact) => contact.name.toLocaleLowerCase() === name.toLocaleLowerCase());
+    //     return result;
+    // };
+
+    // const handleSubmit = e => {
+    //   e.preventDefault();
+    //   const isExistContact = contacts.find(
+    //     contact => contact.name.toLocaleLowerCase() === name.toLocaleLowerCase()
+    //   );
+    //   if (isExistContact) {
+    //     toast.error(`${name} is already in contacts`);
+    //     return;
+    //   }
+    //   dispatch(addContact({ name, number }));
+    //   toast.success('Successfully added contact!');
+    //   setName('');
+    //   setNumber('');
+    // };
 
       return ( 
         <form 
@@ -68,7 +113,7 @@ export default function ContactForm () {
           pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
           title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
           required
-          value={state.name} 
+          value={name} 
           onChange={handleChange} />
         </div>
         <div className={scss.formInput}>
@@ -80,7 +125,7 @@ export default function ContactForm () {
           name="phone" 
           pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
           title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
-          value={state.phone} 
+          value={phone} 
           onChange={handleChange} 
           required/>
         </div>
