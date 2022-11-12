@@ -13,16 +13,10 @@ export default function ContactForm () {
   const [name, setName] = useState('');
   const [phone, setPhone] = useState('');
 
-  //  const [state, setState] = useState({
-  //           name: '',
-  //           phone: '',
-  //  });
-
   const nameID = nanoid();
   const telID = nanoid();
 
   const handleChange = (e) => {
-        // const {name, value} = e.target;
         const { name } = e.currentTarget;
         switch (name) {
           case 'name':
@@ -34,17 +28,10 @@ export default function ContactForm () {
           default:
             break;
         }
-        // setState((prev) => {
-        //   return {
-        //     ...prev,
-        //     [name]: value,
-        //   }
-        // })
       };
 
   const handleSubmit = (e) => {
         e.preventDefault()
-
         const duplicateContacts = contacts.find(contact => contact.name.toLocaleLowerCase() === name.toLocaleLowerCase());
       console.log(duplicateContacts)
         console.log(contacts)
@@ -57,47 +44,7 @@ export default function ContactForm () {
             setName('');
             setPhone('');
           }
-        
-
-
-        
-        // const {name, phone} = state;
-        // onAddContacts({name, phone})
-      };
-      // const onAddContacts = (data) => {
-      //   if (duplicateContacts(data)) {
-      //     alert (`${data.name} is already in contact`)
-      //     return
-      //   }
-      //   else {
-      //     const action = addContacts(data);
-      //     dispatch(action);
-      //     setState ({
-      //       name: '',
-      //       phone: '',
-      //     })
-      //   }
-      // };
-
-    //   const duplicateContacts = ({name}) => {
-    //     const result = contacts.find((contact) => contact.name.toLocaleLowerCase() === name.toLocaleLowerCase());
-    //     return result;
-    // };
-
-    // const handleSubmit = e => {
-    //   e.preventDefault();
-    //   const isExistContact = contacts.find(
-    //     contact => contact.name.toLocaleLowerCase() === name.toLocaleLowerCase()
-    //   );
-    //   if (isExistContact) {
-    //     toast.error(`${name} is already in contacts`);
-    //     return;
-    //   }
-    //   dispatch(addContact({ name, number }));
-    //   toast.success('Successfully added contact!');
-    //   setName('');
-    //   setNumber('');
-    // };
+      }; 
 
       return ( 
         <form 

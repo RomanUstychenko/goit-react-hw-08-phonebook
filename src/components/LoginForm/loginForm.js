@@ -30,7 +30,6 @@ import PropTypes from "prop-types";
             {<label htmlFor={passwordId}>Password </label>}
             <input 
             id={passwordId} placeholder="Enter password" name="password" type="password" required onChange={handleChange} value={password}
-            // checked={checked}   className={fullClassName}  
              />
         </div>
         <button>Login</button>
