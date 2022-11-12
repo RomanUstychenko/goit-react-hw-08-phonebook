@@ -25,10 +25,10 @@ import { deleteContact } from "redux/contacts/contacts-operation";
 
     return (
             <ul>
-            {getFilteredContact().map(({name, phone, id}) => (
+            {getFilteredContact().map(({name, number, id}) => (
             <li className={scss.contactList} key={id}> 
             <b>Name:</b>  {name} <br />
-            <b className={scss.tel}>Tel:</b> {phone} 
+            <b className={scss.tel}>Tel:</b> {number} 
             <span className={scss.delContacts} onClick={() => { dispatch(deleteContact(id)); }}>Delete</span></li>
     ))
     }
