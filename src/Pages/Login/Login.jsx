@@ -2,6 +2,7 @@ import { useDispatch,
   // useSelector
   } from "react-redux";
 import { login } from 'redux/auth/auth-operation';
+import scss from "./Login.module.scss"
 
 
 // import { isLogin } from 'redux/auth/auth-selector';
@@ -27,8 +28,8 @@ export default function Login () {
 
 
   return (
-    <div>
-      <h1>Login Page</h1>
+    <div className={scss.LoginPage}>
+      <h1>Login, please</h1>
       <LoginForm onSubmit={onLogin}/>
       
     </div>

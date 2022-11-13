@@ -7,8 +7,9 @@
     justify-content: center;
 }
 .link {
+    list-style: none;
     font-size: 40px;
-    color: rgb(158, 77, 77);
+    color: rgb(19, 15, 15);
     &.active {
         color: white;
         background-color: rgb(158, 77, 77);

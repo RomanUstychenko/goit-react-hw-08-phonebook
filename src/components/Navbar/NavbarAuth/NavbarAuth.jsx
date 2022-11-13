@@ -8,10 +8,10 @@ const getClassName = ({isActive}) => {
 
 export default function NavbarAuth() {
   return (
-    <ul className={scss.navbarMenuList}>
+    <ul className={scss.navbarAuthList}>
         {items.map(({id, to, text}) => {
             return (
-                <li className={scss.navbarMenuListItem} key={id}>
+                <li className={scss.navbarAuthListItem} key={id}>
                     <NavLink className={getClassName} to={to} end>{text}</NavLink>
                 </li>
             )})

@@ -9,19 +9,10 @@ const dispatch = useDispatch();
 const onLogout =() => {
     dispatch(logout())
 }
-
-
-console.log(user)
-// const chekName = {
-// if (useSelector(getUser)) 
-
-// {return Hi, ${name}}
-// }
-
-
+const chekName = Boolean(user)
   return (
-    <div className={scss.navbarMenuList}>
-      {/* <p>Hello {!user.name}</p> */}
+    <div className={scss.navbarUser}>
+      {chekName ? <p>Welcome, {user.name}</p> : <p>User</p> }
     <button onClick={onLogout}>Logout</button></div>
   )
 }

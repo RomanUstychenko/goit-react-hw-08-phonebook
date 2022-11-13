@@ -4,6 +4,7 @@ import { useDispatch,
   // useSelector
  } from "react-redux";
 import { signup } from 'redux/auth/auth-operation';
+import scss from "./Registration.module.scss"
 
 
 export default function Registration() {
@@ -50,8 +51,8 @@ const handleSubmit = (e) => {
 // ;}
 
   return (
-    <div>
-       <h1>Registration</h1> 
+    <div className={scss.registrationPage}>
+       <h1>Registration Form</h1> 
        <form
        onSubmit={handleSubmit}>
        <div>
