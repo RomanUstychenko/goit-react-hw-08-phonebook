@@ -4,6 +4,7 @@ import scss from "./ContactForm.module.scss"
 import { useSelector, useDispatch } from 'react-redux';
 import { getFilteredContacts } from 'redux/contacts/contacts-selector';
 import { addContacts } from "redux/contacts/contacts-operation"; 
+import { Notify } from 'notiflix/build/notiflix-notify-aio';
 
 export default function ContactForm () {
   const contacts = useSelector(getFilteredContacts);
@@ -36,7 +37,8 @@ export default function ContactForm () {
       console.log(duplicateContacts)
         console.log(contacts)
           if (duplicateContacts) {
-            alert (`${name} is already in contact`)
+            Notify.failure(`${name} is already in contact`)
+            // alert (`${name} is already in contact`)
             return
           }
           else {

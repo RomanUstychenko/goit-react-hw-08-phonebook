@@ -1,5 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { signup, login, logout, current } from "./auth-operation";
+import { Notify } from 'notiflix/build/notiflix-notify-aio';
 
 
 const initialState = {
@@ -7,6 +8,7 @@ const initialState = {
     token: "",
     isLogin: false,
     loading: false,
+    isLoadingUser: false,
     error: null,
 }
 
@@ -27,6 +29,7 @@ extraReducers: {
     [signup.rejected]: (store, {payload}) => {
         store.loading = false;
         store.error = payload;
+        Notify.failure(`Login or email is already exists`)
     },
     [login.pending]: (store) => {
         store.loading = true;
@@ -41,6 +44,7 @@ extraReducers: {
     [login.rejected]: (store, {payload}) => {
         store.loading = false;
         store.error = payload;
+        Notify.failure(`wrong password or email`)
     },
     [logout.pending]: (store) => {
         store.loading = true;
@@ -55,18 +59,19 @@ extraReducers: {
     [logout.rejected]: (store, {payload}) => {
         store.loading = false;
         store.error = payload;
+
     },
     [current.pending]: (store) => {
-        store.loading = true;
+        store.isLoadingUser = true;
         store.error = null;
     },
     [current.fulfilled]: (store, {payload}) => {
-        store.loading = false;
+        store.isLoadingUser = false;
         store.user = payload.user;
         store.isLogin = true;
     },
     [current.rejected]: (store, {payload}) => {
-        store.loading = false;
+        store.isLoadingUser = false;
         store.error = payload;
     },
 }

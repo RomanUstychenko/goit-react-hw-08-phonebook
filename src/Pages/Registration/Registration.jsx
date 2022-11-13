@@ -1,9 +1,10 @@
 import { useState } from 'react';
 import { nanoid } from "nanoid";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch, 
+  // useSelector
+ } from "react-redux";
 import { signup } from 'redux/auth/auth-operation';
-import { isLogin } from 'redux/auth/auth-selector';
-import { Navigate } from "react-router-dom";
+
 
 export default function Registration() {
 
@@ -16,7 +17,7 @@ export default function Registration() {
     const passwordId = nanoid();
 
   const dispatch = useDispatch();
-  const isUserLogin = useSelector(isLogin);
+  // const isUserLogin = useSelector(isLogin);
 
   const handleChange = (event) => {
     const { name, value } = event.currentTarget;
@@ -40,12 +41,13 @@ export default function Registration() {
 
 const handleSubmit = (e) => {
     e.preventDefault();
+    console.log("reg")
     dispatch(signup({ name: name, email: email, password: password }));    
 };
 
-if (isUserLogin) {
-  return <Navigate to="/contacts" />
-;}
+// if (isUserLogin) {
+//   return <Navigate to="/contacts" />
+// ;}
 
   return (
     <div>

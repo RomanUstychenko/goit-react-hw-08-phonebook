@@ -8,22 +8,17 @@ import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { getState } from 'redux/contacts/contacts-selector';
 import { getContacts } from 'redux/contacts/contacts-selector';
-import UseAuth from "components/hooks/useAuth"
-import { Navigate } from "react-router-dom"
+// import UseAuth from "components/hooks/useAuth"
+// import { Navigate } from "react-router-dom"
 
 export default function Contacts() {
 
   const dispatch = useDispatch();
   const contacts = useSelector(getContacts);
  const {loading, error} = useSelector(getState);
-console.log(contacts)
       useEffect(() => {
           dispatch(fetchContacts());
           }, [dispatch]);
-          const isUserLogin = UseAuth()
-          if (!isUserLogin) {
-    return <Navigate to="/login" />
-  }
   return (
     <div  className={scss.phoneBook}>
       <div className={scss.contactForm}>
