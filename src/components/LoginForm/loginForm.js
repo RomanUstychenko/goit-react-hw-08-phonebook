@@ -1,6 +1,8 @@
 import { nanoid } from "nanoid";
 import useForm from 'components/hooks/useForm';
 import PropTypes from "prop-types";
+import { Button } from "components/Button/Button";
+import scss from "./LoginForm.module.scss"
 
     const initialState = {
         email: "",
@@ -19,20 +21,28 @@ import PropTypes from "prop-types";
       return (
         <div>
         <form onSubmit={handleSubmit}>
-       <div>
-            {<label htmlFor={emailId}> Login </label>}
+       <div className={scss.LoginForm}>
+            {<div className={scss.LoginFormLabel}><label 
+            
+            htmlFor={emailId}> Login </label></div> }
             <input 
+            className={scss.LoginFormInput}
             id={emailId} placeholder="Enter name" name="email" type="text" required onChange={handleChange} value={email}
             pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" 
              />
         </div>
-        <div>
-            {<label htmlFor={passwordId}>Password </label>}
+        <div className={scss.LoginForm}>
+            {<div className={scss.LoginFormLabel}><label
+            htmlFor={passwordId}>Password </label></div>}
             <input 
+            className={scss.LoginFormInput}
             id={passwordId} placeholder="Enter password" name="password" type="password" required onChange={handleChange} value={password}
              />
         </div>
-        <button>Login</button>
+        <Button 
+        text="Login"
+        type="button"
+        />
        </form>
        </div>
       )

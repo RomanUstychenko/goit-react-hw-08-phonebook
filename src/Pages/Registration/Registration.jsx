@@ -5,6 +5,7 @@ import { useDispatch,
  } from "react-redux";
 import { signup } from 'redux/auth/auth-operation';
 import scss from "./Registration.module.scss"
+import { Button } from 'components/Button/Button';
 
 
 export default function Registration() {
@@ -55,33 +56,39 @@ const handleSubmit = (e) => {
        <h1>Registration Form</h1> 
        <form
        onSubmit={handleSubmit}>
-       <div>
-            {<label 
+       <div className={scss.registrationForm}>
+            {<div className={scss.registrationFormLabel}> <label 
             htmlFor={nameId}
-            >Login </label>}
+            >Login </label></div>}
             <input 
+            className={scss.registrationFormInput}
             id={nameId} placeholder="Enter name" name="name" type="text" required onChange={handleChange} value={name}
             pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
              />
         </div>
-        <div>
-            {<label 
+        <div className={scss.registrationForm}>
+            {<div className={scss.registrationFormLabel}><label 
             htmlFor={emailId}
-            >E-mail </label>}
+            >E-mail </label></div>}
             <input 
+            className={scss.registrationFormInput}
             id={emailId} placeholder="Enter email" name="email" type="email" required onChange={handleChange} value={email}
             pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
              />
         </div>
-        <div>
-            {<label 
+        <div className={scss.registrationForm}>
+            {<div className={scss.registrationFormLabel}><label 
             htmlFor={passwordId}
-            >Password </label>}
+            >Password </label></div>}
             <input 
+            className={scss.registrationFormInput}
             id={passwordId} placeholder="Enter password" name="password" type="password" required onChange={handleChange} value={password}
              />
         </div>
-        <button>Registration</button>
+        <Button 
+        text="Registration"
+        type="button"
+        />
        </form>
        
        </div>

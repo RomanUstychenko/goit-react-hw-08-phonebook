@@ -29,7 +29,7 @@ export default function Login () {
 
   return (
     <div className={scss.LoginPage}>
-      <h1>Login, please</h1>
+      <h1>Sign in please <br /> in your phonebook</h1>
       <LoginForm onSubmit={onLogin}/>
       
     </div>
