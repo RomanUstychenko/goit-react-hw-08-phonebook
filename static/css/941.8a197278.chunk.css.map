@@ -1,1 +1,0 @@
-{"version":3,"file":"static/css/941.8a197278.chunk.css","mappings":"AAAA,wBAGI,mBAFA,aACA,qBACA","sources":["Pages/Login/Login.module.scss"],"sourcesContent":[".LoginPage {\n    display: flex;\n    flex-direction: column;\n    align-items: center;\n}"],"names":[],"sourceRoot":""}

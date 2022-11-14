@@ -1,1 +1,0 @@
-{"version":3,"file":"static/css/610.6cd62643.chunk.css","mappings":"AAAA,sCAGI,mBAFA,aACA,qBACA","sources":["Pages/Registration/Registration.module.scss"],"sourcesContent":[".registrationPage {\n    display: flex;\n    flex-direction: column;\n    align-items: center;\n}"],"names":[],"sourceRoot":""}
