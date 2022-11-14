@@ -12,7 +12,7 @@ const onLogout =() => {
 const chekName = Boolean(user)
   return (
     <div className={scss.navbarUser}>
-      {chekName ? <p>Welcome, {user.name}</p> : <p>User</p> }
+      {chekName ? <p>Welcome, {user.name}</p> : <p>Welcome, User</p> }
     <button onClick={onLogout}>Logout</button></div>
   )
 }

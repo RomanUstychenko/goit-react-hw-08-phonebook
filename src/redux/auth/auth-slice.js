@@ -4,7 +4,7 @@ import { Notify } from 'notiflix/build/notiflix-notify-aio';
 
 
 const initialState = {
-    user: {},
+    user: { name: null, email: null },
     token: "",
     isLogin: false,
     loading: false,
@@ -52,7 +52,7 @@ extraReducers: {
     },
     [logout.fulfilled]: (store, {payload}) => {
         store.loading = false;
-        store.user = {};
+        store.user = { name: null, email: null };
         store.token = "";
         store.isLogin = false;
     },
@@ -67,7 +67,7 @@ extraReducers: {
     },
     [current.fulfilled]: (store, {payload}) => {
         store.isLoadingUser = false;
-        store.user = payload.user;
+        store.user = payload;
         store.isLogin = true;
     },
     [current.rejected]: (store, {payload}) => {

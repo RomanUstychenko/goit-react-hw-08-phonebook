@@ -63,7 +63,5 @@ export const current = createAsyncThunk(
                 message: response.data.message
             }
            return rejectWithValue(error)
-        }
-    }
-
+        }}
 )
