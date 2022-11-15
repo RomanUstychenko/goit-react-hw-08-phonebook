@@ -42,7 +42,7 @@ extraReducers: {
         store.isLogin = true;
     },
     [login.rejected]: (store, {payload}) => {
-        store.loading = false;
+        // store.loading = false;
         store.error = payload;
         Notify.failure(`wrong password or email`)
     },

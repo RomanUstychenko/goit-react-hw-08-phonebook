@@ -28,7 +28,6 @@ useEffect(() => {
     <div
       style={{
         height: '100vh',
-        // display: 'flex',
         fontSize: 40,
         color: '#010101'
       }}
@@ -49,7 +48,7 @@ useEffect(() => {
      <Route path="*" element={<NotFound />}/>
      </Routes>
      </Suspense>
-      )}
+      )      }
       
     </div>
   )
