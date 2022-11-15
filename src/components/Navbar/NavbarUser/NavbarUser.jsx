@@ -10,15 +10,26 @@ const dispatch = useDispatch();
 const onLogout =() => {
     dispatch(logout())
 }
+
 const chekName = Boolean(user)
   return (
     <div className={scss.navbarUser}>
       {chekName ? <p className={scss.navbarUserName}>Welcome, <b>{user.name}</b></p> : <p>Welcome, <b>User</b></p> }
-      <span className={scss.navbarUserBtn}><Button 
+        <Button 
+        style={{
+          position: 'absolute',
+          right: '0px',
+          height: '25px',
+          padding: '0px 0px',
+          minWidth: '100px',
+          fontSize: 15,
+          color: '#010101'
+        }}
+    
       text="Logout"
       type="button"
       onClick={onLogout}
-      /></span>
+      />
     </div>
   )
 }

@@ -1,9 +1,10 @@
 import scss from "./Button.module.scss"
 import PropTypes from 'prop-types';
 
-export const Button = ({text, onClick}) => {
+export const Button = ({style, text, onClick}) => {
   return (
     <button 
+    style={style}
     className={scss.Button}
     onClick={onClick}
     >

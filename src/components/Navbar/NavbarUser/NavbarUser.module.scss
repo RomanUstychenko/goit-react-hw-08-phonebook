@@ -1,13 +1,9 @@
 .navbarUser {
-    display: block;
+    position: relative;
     margin-right: 20px;
 }
 
 .navbarUserName {
     font-size: 25px;
     font-weight: 600;
-}
-.navbarUserBtn {
-    z-index: 10000;
-    font-size: 15px;
 }
